@@ -13,7 +13,7 @@ router.post("/login", function (req, res, next) {
       return res.status(400).json([]);
     } else if (result[0]) {
       const token = jwt.sign({ sub: result[0].MobilePhone }, config.secret, {
-        expiresIn: "2m",
+        expiresIn: "5m",
       });
       return res.status(200).json({
         access_token: token,
@@ -23,7 +23,6 @@ router.post("/login", function (req, res, next) {
         data: result,
       });
     } else {
-      console.log("");
       return res
         .status(200)
         .json({ status: false, message: "Email Not Found.." });
